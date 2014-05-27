@@ -16,6 +16,8 @@ namespace LaboratorioCINAP.Models
     {
         public string Nombre { get; set; }
         public int ID_Persona { get; set; }
+        public string TipoPersona { get; set; }
+        public int ID_TipoPersona { get; set; }
         public string Materia { get; set; }
         public int ID_Grupo { get; set; }
     }

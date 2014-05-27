@@ -1,0 +1,64 @@
+﻿@model LaboratorioCINAP.Models.Material
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Material</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ID_Material)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ID_Material)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodigoSerie)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodigoSerie)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Disponibilidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Disponibilidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TipoMaterial.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoMaterial.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EstadoFuncional)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoFuncional)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EstadoDescripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoDescripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Activo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
