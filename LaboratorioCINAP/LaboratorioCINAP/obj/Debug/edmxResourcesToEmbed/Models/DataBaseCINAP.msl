@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LaboratoriosCINAPModelStoreContainer" CdmEntityContainer="LaboratoriosCINAPEntities">
+    <EntitySetMapping Name="Alumno">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Alumno">
+        <MappingFragment StoreEntitySet="Alumno">
+          <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrera">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Carrera">
+        <MappingFragment StoreEntitySet="Carrera">
+          <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleGrupo">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.DetalleGrupo">
+        <MappingFragment StoreEntitySet="DetalleGrupo">
+          <ScalarProperty Name="ID_DetalleGrupo" ColumnName="ID_DetalleGrupo" />
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grupo">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Grupo">
+        <MappingFragment StoreEntitySet="Grupo">
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+          <ScalarProperty Name="Materia" ColumnName="Materia" />
+          <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratorio">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Laboratorio">
+        <MappingFragment StoreEntitySet="Laboratorio">
+          <ScalarProperty Name="ID_Laboratorio" ColumnName="ID_Laboratorio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maestro">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Maestro">
+        <MappingFragment StoreEntitySet="Maestro">
+          <ScalarProperty Name="ID_Maestro" ColumnName="ID_Maestro" />
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Material">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+          <ScalarProperty Name="CodigoSerie" ColumnName="CodigoSerie" />
+          <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+          <ScalarProperty Name="ID_TipoMaterial" ColumnName="ID_TipoMaterial" />
+          <ScalarProperty Name="EstadoFuncional" ColumnName="EstadoFuncional" />
+          <ScalarProperty Name="EstadoDescripcion" ColumnName="EstadoDescripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persona">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistroPrestamoLaboratorio">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RegistroPrestamoLaboratorio">
+        <MappingFragment StoreEntitySet="RegistroPrestamoLaboratorio">
+          <ScalarProperty Name="ID_RegistroPrestamoLaboratorio" ColumnName="ID_RegistroPrestamoLaboratorio" />
+          <ScalarProperty Name="ID_Laboratorio" ColumnName="ID_Laboratorio" />
+          <ScalarProperty Name="ID_Maestro" ColumnName="ID_Maestro" />
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+          <ScalarProperty Name="FechaEntrada" ColumnName="FechaEntrada" />
+          <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+          <ScalarProperty Name="Asistencia" ColumnName="Asistencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistroPrestamoMaterial">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RegistroPrestamoMaterial">
+        <MappingFragment StoreEntitySet="RegistroPrestamoMaterial">
+          <ScalarProperty Name="ID_RegistroPrestamoMaterial" ColumnName="ID_RegistroPrestamoMaterial" />
+          <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="EstadoDescripcionEntrega" ColumnName="EstadoDescripcionEntrega" />
+          <ScalarProperty Name="EstadoDescripcionRecibido" ColumnName="EstadoDescripcionRecibido" />
+          <ScalarProperty Name="EstadoFuncionalEntrega" ColumnName="EstadoFuncionalEntrega" />
+          <ScalarProperty Name="EstadoFuncionalRecibido" ColumnName="EstadoFuncionalRecibido" />
+          <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+          <ScalarProperty Name="FechaRegreso" ColumnName="FechaRegreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reporte">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Reporte">
+        <MappingFragment StoreEntitySet="Reporte">
+          <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
+          <ScalarProperty Name="FechaInicioPeriodo" ColumnName="FechaInicioPeriodo" />
+          <ScalarProperty Name="FechaTerminacionPeriodo" ColumnName="FechaTerminacionPeriodo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReporteItem">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.ReporteItem">
+        <MappingFragment StoreEntitySet="ReporteItem">
+          <ScalarProperty Name="ID_ReporteItem" ColumnName="ID_ReporteItem" />
+          <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMaterial">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoMaterial">
+        <MappingFragment StoreEntitySet="TipoMaterial">
+          <ScalarProperty Name="ID_TipoMaterial" ColumnName="ID_TipoMaterial" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPersona">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoPersona">
+        <MappingFragment StoreEntitySet="TipoPersona">
+          <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoUsuario">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoUsuario">
+        <MappingFragment StoreEntitySet="TipoUsuario">
+          <ScalarProperty Name="ID_TipoUsuario" ColumnName="ID_TipoUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="ID_TipoUsuario" ColumnName="ID_TipoUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelacionPersonaGrupo">
+      <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RelacionPersonaGrupo">
+        <MappingFragment StoreEntitySet="RelacionPersonaGrupo">
+          <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+          <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+          <ScalarProperty Name="Materia" ColumnName="Materia" />
+          <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="LaboratoriosCINAPModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="LaboratoriosCINAPModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="LaboratoriosCINAPModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="LaboratoriosCINAPModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="LaboratoriosCINAPModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="LaboratoriosCINAPModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="LaboratoriosCINAPModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
