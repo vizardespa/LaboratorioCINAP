@@ -1,0 +1,47 @@
+-- Generacion de Reporte
+EXEC dbo.CreacionReporte @FechaInicio = '2014-05-18 07:59:41', -- datetime
+    @FechaCierre = '2014-11-18 07:59:41' -- datetime
+
+-- Tipos de Reportes
+EXEC dbo.ReporteRangoFechasSemestres @FechaInicio = '2013-11-18 07:59:41', -- datetime
+    @FechaCierre = '2014-11-18 07:59:41' -- datetime
+
+EXEC dbo.ReporteSemestres @IdReporte = 1 -- int
+
+EXEC dbo.ReporteRangoFechasMaterias @FechaInicio = '2013-11-18 07:59:41', -- datetime
+    @FechaCierre = '2014-11-18 07:59:41' -- datetime
+
+EXEC dbo.ReporteMaterias @IdReporte = 1 -- int
+
+EXEC dbo.ReporteRangoFechasCarreras @FechaInicio = '2013-11-18 07:59:41', -- datetime
+    @FechaCierre = '2014-11-18 07:59:41' -- datetime
+
+EXEC dbo.ReporteCarreras @IdReporte = 1 -- int
+
+EXEC dbo.ReporteRangoFechasCarreraSemestre @FechaInicio = '2013-11-18 07:59:41', -- datetime
+    @FechaCierre = '2014-11-18 07:59:41', -- datetime
+    @IdCarrera = 1 -- int
+
+EXEC dbo.ReporteCarreraSemestre @IdReporte = 1, -- int
+	@IdCarrera = 1 -- int
+
+EXEC dbo.ReporteCarreraMaterias @IdReporte = 3, -- int
+    @IdCarrera = 1 -- int
+
+--Guarda o Elimina el ultimo reporte creado
+EXEC dbo.GuardadoReporte @Guardar = 0 -- bit
+
+SELECT 
+*
+FROM dbo.Reporte R
+INNER JOIN dbo.ReporteItem RI
+ON R.ID_Reporte = RI.ID_Reporte
+INNER JOIN dbo.Grupo G
+ON RI.ID_Grupo = G.ID_Grupo
+
+SELECT * FROM dbo.TipoReporte
+
+EXEC dbo.sp_generate_inserts @table_name = 'TipoReporte', -- varchar(776)
+    @ommit_identity = 1 -- bit
+
+GO
