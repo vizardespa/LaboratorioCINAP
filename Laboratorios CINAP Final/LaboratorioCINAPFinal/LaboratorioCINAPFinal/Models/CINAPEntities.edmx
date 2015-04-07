@@ -1,0 +1,1588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LaboratoriosCINAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Matricula" Type="int" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="ID_Carrera" />
+          </Key>
+          <Property Name="ID_Carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abreviacion" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="DetalleGrupo">
+          <Key>
+            <PropertyRef Name="ID_DetalleGrupo" />
+          </Key>
+          <Property Name="ID_DetalleGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona" Type="int" Nullable="false" />
+          <Property Name="ID_Grupo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="ID_Grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Semestre" Type="int" />
+          <Property Name="Materia" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Carrera" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Laboratorio">
+          <Key>
+            <PropertyRef Name="ID_Laboratorio" />
+          </Key>
+          <Property Name="ID_Laboratorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="300" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Maestro">
+          <Key>
+            <PropertyRef Name="ID_Maestro" />
+          </Key>
+          <Property Name="ID_Maestro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="ClaveEmpleado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoSerie" Type="varchar" MaxLength="20" />
+          <Property Name="Disponibilidad" Type="bit" />
+          <Property Name="ID_TipoMaterial" Type="int" Nullable="false" />
+          <Property Name="EstadoFuncional" Type="bit" />
+          <Property Name="EstadoDescripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+          </Key>
+          <Property Name="ID_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_TipoPersona" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroPrestamoLaboratorio">
+          <Key>
+            <PropertyRef Name="ID_RegistroPrestamoLaboratorio" />
+          </Key>
+          <Property Name="ID_RegistroPrestamoLaboratorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Laboratorio" Type="int" Nullable="false" />
+          <Property Name="ID_Maestro" Type="int" Nullable="false" />
+          <Property Name="ID_Grupo" Type="int" Nullable="false" />
+          <Property Name="FechaEntrada" Type="datetime" Nullable="false" />
+          <Property Name="FechaSalida" Type="datetime" Nullable="false" />
+          <Property Name="Asistencia" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroPrestamoMaterial">
+          <Key>
+            <PropertyRef Name="ID_RegistroPrestamoMaterial" />
+          </Key>
+          <Property Name="ID_RegistroPrestamoMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Material" Type="int" Nullable="false" />
+          <Property Name="ID_Persona" Type="int" Nullable="false" />
+          <Property Name="ID_Grupo" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="EstadoDescripcionEntrega" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="EstadoDescripcionRecibido" Type="varchar" MaxLength="1000" />
+          <Property Name="EstadoFuncionalEntrega" Type="bit" Nullable="false" />
+          <Property Name="EstadoFuncionalRecibido" Type="bit" />
+          <Property Name="FechaPrestamo" Type="datetime" Nullable="false" />
+          <Property Name="FechaRegreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ID_Reporte" />
+          </Key>
+          <Property Name="ID_Reporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="FechaInicioPeriodo" Type="datetime" Nullable="false" />
+          <Property Name="FechaTerminacionPeriodo" Type="datetime" Nullable="false" />
+          <Property Name="IdTipoReporte" Type="int" />
+          <Property Name="Temporal" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteItem">
+          <Key>
+            <PropertyRef Name="ID_ReporteItem" />
+          </Key>
+          <Property Name="ID_ReporteItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Reporte" Type="int" Nullable="false" />
+          <Property Name="ID_Grupo" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoMaterial">
+          <Key>
+            <PropertyRef Name="ID_TipoMaterial" />
+          </Key>
+          <Property Name="ID_TipoMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="ID_TipoPersona" />
+          </Key>
+          <Property Name="ID_TipoPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TipoReporte">
+          <Key>
+            <PropertyRef Name="IdTipoReporte" />
+          </Key>
+          <Property Name="IdTipoReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="ID_TipoUsuario" />
+          </Key>
+          <Property Name="ID_TipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_TipoUsuario" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LaboratoriosCINAP.dbo.RelacionPersonaGrupo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RelacionPersonaGrupo">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+            <PropertyRef Name="TipoPersona" />
+            <PropertyRef Name="ID_TipoPersona" />
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ID_Persona" Type="int" Nullable="false" />
+          <Property Name="TipoPersona" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_TipoPersona" Type="int" Nullable="false" />
+          <Property Name="Materia" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Grupo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__RegistroP__ID_La__25869641">
+          <End Role="Laboratorio" Type="Self.Laboratorio" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laboratorio">
+              <PropertyRef Name="ID_Laboratorio" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Laboratorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroP__ID_Ma__1920BF5C">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroP__ID_Ma__267ABA7A">
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro">
+              <PropertyRef Name="ID_Maestro" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Maestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alumno_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleGrupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="DetalleGrupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleGrupo_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="DetalleGrupo">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="ID_Carrera" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="ID_Carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Maestro">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_TipoMaterial">
+          <End Role="TipoMaterial" Type="Self.TipoMaterial" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMaterial">
+              <PropertyRef Name="ID_TipoMaterial" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="ID_TipoMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="ID_TipoPersona" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="ID_TipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoLaboratorio_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoMaterial_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoMaterial_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_TipoReporte">
+          <End Role="TipoReporte" Type="Self.TipoReporte" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoReporte">
+              <PropertyRef Name="IdTipoReporte" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IdTipoReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteItem_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="ReporteItem">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteItem_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="ID_Reporte" />
+            </Principal>
+            <Dependent Role="ReporteItem">
+              <PropertyRef Name="ID_Reporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="ID_TipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_TipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreacionReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GuardadoReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Guardar" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ReporteCarreraMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdReporte" Type="int" Mode="In" />
+          <Parameter Name="IdCarrera" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReporteCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdReporte" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReporteCarreraSemestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdReporte" Type="int" Mode="In" />
+          <Parameter Name="IdCarrera" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReporteMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdReporte" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReporteRangoFechasCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ReporteRangoFechasCarreraSemestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+          <Parameter Name="IdCarrera" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReporteRangoFechasMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ReporteRangoFechasSemestres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ReporteSemestres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdReporte" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_generate_inserts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="table_name" Type="varchar" Mode="In" />
+          <Parameter Name="target_table" Type="varchar" Mode="In" />
+          <Parameter Name="include_column_list" Type="bit" Mode="In" />
+          <Parameter Name="from" Type="varchar" Mode="In" />
+          <Parameter Name="include_timestamp" Type="bit" Mode="In" />
+          <Parameter Name="debug_mode" Type="bit" Mode="In" />
+          <Parameter Name="owner" Type="varchar" Mode="In" />
+          <Parameter Name="ommit_images" Type="bit" Mode="In" />
+          <Parameter Name="ommit_identity" Type="bit" Mode="In" />
+          <Parameter Name="top" Type="int" Mode="In" />
+          <Parameter Name="cols_to_include" Type="varchar" Mode="In" />
+          <Parameter Name="cols_to_exclude" Type="varchar" Mode="In" />
+          <Parameter Name="disable_constraints" Type="bit" Mode="In" />
+          <Parameter Name="ommit_computed_cols" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LaboratoriosCINAPModelStoreContainer">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleGrupo" EntityType="Self.DetalleGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Laboratorio" EntityType="Self.Laboratorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroPrestamoLaboratorio" EntityType="Self.RegistroPrestamoLaboratorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroPrestamoMaterial" EntityType="Self.RegistroPrestamoMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteItem" EntityType="Self.ReporteItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMaterial" EntityType="Self.TipoMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoReporte" EntityType="Self.TipoReporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelacionPersonaGrupo" EntityType="Self.RelacionPersonaGrupo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RelacionPersonaGrupo].[Nombre] AS [Nombre], 
+    [RelacionPersonaGrupo].[ID_Persona] AS [ID_Persona], 
+    [RelacionPersonaGrupo].[TipoPersona] AS [TipoPersona], 
+    [RelacionPersonaGrupo].[ID_TipoPersona] AS [ID_TipoPersona], 
+    [RelacionPersonaGrupo].[Materia] AS [Materia], 
+    [RelacionPersonaGrupo].[ID_Grupo] AS [ID_Grupo]
+    FROM [dbo].[RelacionPersonaGrupo] AS [RelacionPersonaGrupo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__RegistroP__ID_La__25869641" Association="Self.FK__RegistroP__ID_La__25869641">
+            <End Role="Laboratorio" EntitySet="Laboratorio" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroP__ID_Ma__1920BF5C" Association="Self.FK__RegistroP__ID_Ma__1920BF5C">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroP__ID_Ma__267ABA7A" Association="Self.FK__RegistroP__ID_Ma__267ABA7A">
+            <End Role="Maestro" EntitySet="Maestro" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alumno_Persona" Association="Self.FK_Alumno_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleGrupo_Grupo" Association="Self.FK_DetalleGrupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="DetalleGrupo" EntitySet="DetalleGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleGrupo_Persona" Association="Self.FK_DetalleGrupo_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="DetalleGrupo" EntitySet="DetalleGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Carrera" Association="Self.FK_Grupo_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Persona" Association="Self.FK_Maestro_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Maestro" EntitySet="Maestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_TipoMaterial" Association="Self.FK_Material_TipoMaterial">
+            <End Role="TipoMaterial" EntitySet="TipoMaterial" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoLaboratorio_Grupo" Association="Self.FK_RegistroPrestamoLaboratorio_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoMaterial_Grupo" Association="Self.FK_RegistroPrestamoMaterial_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoMaterial_Persona" Association="Self.FK_RegistroPrestamoMaterial_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_TipoReporte" Association="Self.FK_Reporte_TipoReporte">
+            <End Role="TipoReporte" EntitySet="TipoReporte" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteItem_Grupo" Association="Self.FK_ReporteItem_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="ReporteItem" EntitySet="ReporteItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteItem_Reporte" Association="Self.FK_ReporteItem_Reporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteItem" EntitySet="ReporteItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaboratoriosCINAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Matricula" Type="Int32" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Alumno_Persona" FromRole="Alumno" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="ID_Carrera" />
+          </Key>
+          <Property Name="ID_Carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Abreviacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grupoes" Relationship="Self.FK_Grupo_Carrera" FromRole="Carrera" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="DetalleGrupo">
+          <Key>
+            <PropertyRef Name="ID_DetalleGrupo" />
+          </Key>
+          <Property Name="ID_DetalleGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" />
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_DetalleGrupo_Grupo" FromRole="DetalleGrupo" ToRole="Grupo" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_DetalleGrupo_Persona" FromRole="DetalleGrupo" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Semestre" Type="Int32" />
+          <Property Name="Materia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Carrera" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Grupo_Carrera" FromRole="Grupo" ToRole="Carrera" />
+          <NavigationProperty Name="DetalleGrupoes" Relationship="Self.FK_DetalleGrupo_Grupo" FromRole="Grupo" ToRole="DetalleGrupo" />
+          <NavigationProperty Name="RegistroPrestamoLaboratorios" Relationship="Self.FK_RegistroPrestamoLaboratorio_Grupo" FromRole="Grupo" ToRole="RegistroPrestamoLaboratorio" />
+          <NavigationProperty Name="RegistroPrestamoMaterials" Relationship="Self.FK_RegistroPrestamoMaterial_Grupo" FromRole="Grupo" ToRole="RegistroPrestamoMaterial" />
+          <NavigationProperty Name="ReporteItems" Relationship="Self.FK_ReporteItem_Grupo" FromRole="Grupo" ToRole="ReporteItem" />
+        </EntityType>
+        <EntityType Name="Laboratorio">
+          <Key>
+            <PropertyRef Name="ID_Laboratorio" />
+          </Key>
+          <Property Name="ID_Laboratorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="RegistroPrestamoLaboratorios" Relationship="Self.FK__RegistroP__ID_La__25869641" FromRole="Laboratorio" ToRole="RegistroPrestamoLaboratorio" />
+        </EntityType>
+        <EntityType Name="Maestro">
+          <Key>
+            <PropertyRef Name="ID_Maestro" />
+          </Key>
+          <Property Name="ID_Maestro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClaveEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RegistroPrestamoLaboratorios" Relationship="Self.FK__RegistroP__ID_Ma__267ABA7A" FromRole="Maestro" ToRole="RegistroPrestamoLaboratorio" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Maestro_Persona" FromRole="Maestro" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoSerie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Disponibilidad" Type="Boolean" />
+          <Property Name="ID_TipoMaterial" Type="Int32" Nullable="false" />
+          <Property Name="EstadoFuncional" Type="Boolean" />
+          <Property Name="EstadoDescripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RegistroPrestamoMaterials" Relationship="Self.FK__RegistroP__ID_Ma__1920BF5C" FromRole="Material" ToRole="RegistroPrestamoMaterial" />
+          <NavigationProperty Name="TipoMaterial" Relationship="Self.FK_Material_TipoMaterial" FromRole="Material" ToRole="TipoMaterial" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+          </Key>
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TipoPersona" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Alumnoes" Relationship="Self.FK_Alumno_Persona" FromRole="Persona" ToRole="Alumno" />
+          <NavigationProperty Name="DetalleGrupoes" Relationship="Self.FK_DetalleGrupo_Persona" FromRole="Persona" ToRole="DetalleGrupo" />
+          <NavigationProperty Name="Maestroes" Relationship="Self.FK_Maestro_Persona" FromRole="Persona" ToRole="Maestro" />
+          <NavigationProperty Name="TipoPersona" Relationship="Self.FK_Persona_TipoPersona" FromRole="Persona" ToRole="TipoPersona" />
+          <NavigationProperty Name="RegistroPrestamoMaterials" Relationship="Self.FK_RegistroPrestamoMaterial_Persona" FromRole="Persona" ToRole="RegistroPrestamoMaterial" />
+        </EntityType>
+        <EntityType Name="RegistroPrestamoLaboratorio">
+          <Key>
+            <PropertyRef Name="ID_RegistroPrestamoLaboratorio" />
+          </Key>
+          <Property Name="ID_RegistroPrestamoLaboratorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Laboratorio" Type="Int32" Nullable="false" />
+          <Property Name="ID_Maestro" Type="Int32" Nullable="false" />
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="FechaEntrada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Asistencia" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_RegistroPrestamoLaboratorio_Grupo" FromRole="RegistroPrestamoLaboratorio" ToRole="Grupo" />
+          <NavigationProperty Name="Laboratorio" Relationship="Self.FK__RegistroP__ID_La__25869641" FromRole="RegistroPrestamoLaboratorio" ToRole="Laboratorio" />
+          <NavigationProperty Name="Maestro" Relationship="Self.FK__RegistroP__ID_Ma__267ABA7A" FromRole="RegistroPrestamoLaboratorio" ToRole="Maestro" />
+        </EntityType>
+        <EntityType Name="RegistroPrestamoMaterial">
+          <Key>
+            <PropertyRef Name="ID_RegistroPrestamoMaterial" />
+          </Key>
+          <Property Name="ID_RegistroPrestamoMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Material" Type="Int32" Nullable="false" />
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" />
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="EstadoDescripcionEntrega" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EstadoDescripcionRecibido" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoFuncionalEntrega" Type="Boolean" Nullable="false" />
+          <Property Name="EstadoFuncionalRecibido" Type="Boolean" />
+          <Property Name="FechaPrestamo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaRegreso" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_RegistroPrestamoMaterial_Grupo" FromRole="RegistroPrestamoMaterial" ToRole="Grupo" />
+          <NavigationProperty Name="Material" Relationship="Self.FK__RegistroP__ID_Ma__1920BF5C" FromRole="RegistroPrestamoMaterial" ToRole="Material" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_RegistroPrestamoMaterial_Persona" FromRole="RegistroPrestamoMaterial" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ID_Reporte" />
+          </Key>
+          <Property Name="ID_Reporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicioPeriodo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaTerminacionPeriodo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdTipoReporte" Type="Int32" />
+          <Property Name="Temporal" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoReporte" Relationship="Self.FK_Reporte_TipoReporte" FromRole="Reporte" ToRole="TipoReporte" />
+          <NavigationProperty Name="ReporteItems" Relationship="Self.FK_ReporteItem_Reporte" FromRole="Reporte" ToRole="ReporteItem" />
+        </EntityType>
+        <EntityType Name="ReporteItem">
+          <Key>
+            <PropertyRef Name="ID_ReporteItem" />
+          </Key>
+          <Property Name="ID_ReporteItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Reporte" Type="Int32" Nullable="false" />
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_ReporteItem_Grupo" FromRole="ReporteItem" ToRole="Grupo" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK_ReporteItem_Reporte" FromRole="ReporteItem" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoMaterial">
+          <Key>
+            <PropertyRef Name="ID_TipoMaterial" />
+          </Key>
+          <Property Name="ID_TipoMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK_Material_TipoMaterial" FromRole="TipoMaterial" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="ID_TipoPersona" />
+          </Key>
+          <Property Name="ID_TipoPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_TipoPersona" FromRole="TipoPersona" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="TipoReporte">
+          <Key>
+            <PropertyRef Name="IdTipoReporte" />
+          </Key>
+          <Property Name="IdTipoReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reportes" Relationship="Self.FK_Reporte_TipoReporte" FromRole="TipoReporte" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="ID_TipoUsuario" />
+          </Key>
+          <Property Name="ID_TipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+        </EntityType>
+        <EntityType Name="RelacionPersonaGrupo">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+            <PropertyRef Name="TipoPersona" />
+            <PropertyRef Name="ID_TipoPersona" />
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" />
+          <Property Name="TipoPersona" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_TipoPersona" Type="Int32" Nullable="false" />
+          <Property Name="Materia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Alumno_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="ID_Carrera" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="ID_Carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleGrupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="DetalleGrupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleGrupo_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="DetalleGrupo">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoLaboratorio_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoMaterial_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteItem_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="ReporteItem">
+              <PropertyRef Name="ID_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroP__ID_La__25869641">
+          <End Role="Laboratorio" Type="Self.Laboratorio" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laboratorio">
+              <PropertyRef Name="ID_Laboratorio" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Laboratorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroP__ID_Ma__267ABA7A">
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+          <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro">
+              <PropertyRef Name="ID_Maestro" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoLaboratorio">
+              <PropertyRef Name="ID_Maestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Maestro">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroP__ID_Ma__1920BF5C">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_TipoMaterial">
+          <End Role="TipoMaterial" Type="Self.TipoMaterial" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMaterial">
+              <PropertyRef Name="ID_TipoMaterial" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="ID_TipoMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="ID_TipoPersona" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="ID_TipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroPrestamoMaterial_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="RegistroPrestamoMaterial">
+              <PropertyRef Name="ID_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_TipoReporte">
+          <End Role="TipoReporte" Type="Self.TipoReporte" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoReporte">
+              <PropertyRef Name="IdTipoReporte" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IdTipoReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteItem_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="ID_Reporte" />
+            </Principal>
+            <Dependent Role="ReporteItem">
+              <PropertyRef Name="ID_Reporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="ID_TipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_TipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratoriosCINAPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alumnoes" EntityType="Self.Alumno" />
+          <EntitySet Name="Carreras" EntityType="Self.Carrera" />
+          <EntitySet Name="DetalleGrupoes" EntityType="Self.DetalleGrupo" />
+          <EntitySet Name="Grupoes" EntityType="Self.Grupo" />
+          <EntitySet Name="Laboratorios" EntityType="Self.Laboratorio" />
+          <EntitySet Name="Maestroes" EntityType="Self.Maestro" />
+          <EntitySet Name="Materials" EntityType="Self.Material" />
+          <EntitySet Name="Personas" EntityType="Self.Persona" />
+          <EntitySet Name="RegistroPrestamoLaboratorios" EntityType="Self.RegistroPrestamoLaboratorio" />
+          <EntitySet Name="RegistroPrestamoMaterials" EntityType="Self.RegistroPrestamoMaterial" />
+          <EntitySet Name="Reportes" EntityType="Self.Reporte" />
+          <EntitySet Name="ReporteItems" EntityType="Self.ReporteItem" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TipoMaterials" EntityType="Self.TipoMaterial" />
+          <EntitySet Name="TipoPersonas" EntityType="Self.TipoPersona" />
+          <EntitySet Name="TipoReportes" EntityType="Self.TipoReporte" />
+          <EntitySet Name="TipoUsuarios" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="RelacionPersonaGrupoes" EntityType="Self.RelacionPersonaGrupo" />
+          <AssociationSet Name="FK_Alumno_Persona" Association="Self.FK_Alumno_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Alumno" EntitySet="Alumnoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Carrera" Association="Self.FK_Grupo_Carrera">
+            <End Role="Carrera" EntitySet="Carreras" />
+            <End Role="Grupo" EntitySet="Grupoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleGrupo_Grupo" Association="Self.FK_DetalleGrupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupoes" />
+            <End Role="DetalleGrupo" EntitySet="DetalleGrupoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleGrupo_Persona" Association="Self.FK_DetalleGrupo_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="DetalleGrupo" EntitySet="DetalleGrupoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoLaboratorio_Grupo" Association="Self.FK_RegistroPrestamoLaboratorio_Grupo">
+            <End Role="Grupo" EntitySet="Grupoes" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoMaterial_Grupo" Association="Self.FK_RegistroPrestamoMaterial_Grupo">
+            <End Role="Grupo" EntitySet="Grupoes" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteItem_Grupo" Association="Self.FK_ReporteItem_Grupo">
+            <End Role="Grupo" EntitySet="Grupoes" />
+            <End Role="ReporteItem" EntitySet="ReporteItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroP__ID_La__25869641" Association="Self.FK__RegistroP__ID_La__25869641">
+            <End Role="Laboratorio" EntitySet="Laboratorios" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroP__ID_Ma__267ABA7A" Association="Self.FK__RegistroP__ID_Ma__267ABA7A">
+            <End Role="Maestro" EntitySet="Maestroes" />
+            <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Persona" Association="Self.FK_Maestro_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Maestro" EntitySet="Maestroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroP__ID_Ma__1920BF5C" Association="Self.FK__RegistroP__ID_Ma__1920BF5C">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_TipoMaterial" Association="Self.FK_Material_TipoMaterial">
+            <End Role="TipoMaterial" EntitySet="TipoMaterials" />
+            <End Role="Material" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersonas" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroPrestamoMaterial_Persona" Association="Self.FK_RegistroPrestamoMaterial_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_TipoReporte" Association="Self.FK_Reporte_TipoReporte">
+            <End Role="TipoReporte" EntitySet="TipoReportes" />
+            <End Role="Reporte" EntitySet="Reportes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteItem_Reporte" Association="Self.FK_ReporteItem_Reporte">
+            <End Role="Reporte" EntitySet="Reportes" />
+            <End Role="ReporteItem" EntitySet="ReporteItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="CreacionReporte">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCierre" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GuardadoReporte">
+            <Parameter Name="Guardar" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteCarreraMaterias" ReturnType="Collection(LaboratoriosCINAPModel.ReporteCarreraMaterias_Result)">
+            <Parameter Name="IdReporte" Mode="In" Type="Int32" />
+            <Parameter Name="IdCarrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteCarreras" ReturnType="Collection(LaboratoriosCINAPModel.ReporteCarreras_Result)">
+            <Parameter Name="IdReporte" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteCarreraSemestre" ReturnType="Collection(LaboratoriosCINAPModel.ReporteCarreraSemestre_Result)">
+            <Parameter Name="IdReporte" Mode="In" Type="Int32" />
+            <Parameter Name="IdCarrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteMaterias" ReturnType="Collection(LaboratoriosCINAPModel.ReporteMaterias_Result)">
+            <Parameter Name="IdReporte" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteRangoFechasCarreras" ReturnType="Collection(LaboratoriosCINAPModel.ReporteRangoFechasCarreras_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCierre" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteRangoFechasCarreraSemestre" ReturnType="Collection(LaboratoriosCINAPModel.ReporteRangoFechasCarreraSemestre_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCierre" Mode="In" Type="DateTime" />
+            <Parameter Name="IdCarrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteRangoFechasMaterias" ReturnType="Collection(LaboratoriosCINAPModel.ReporteRangoFechasMaterias_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCierre" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteRangoFechasSemestres" ReturnType="Collection(LaboratoriosCINAPModel.ReporteRangoFechasSemestres_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCierre" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ReporteSemestres" ReturnType="Collection(LaboratoriosCINAPModel.ReporteSemestres_Result)">
+            <Parameter Name="IdReporte" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_generate_inserts" ReturnType="Collection(String)">
+            <Parameter Name="table_name" Mode="In" Type="String" />
+            <Parameter Name="target_table" Mode="In" Type="String" />
+            <Parameter Name="include_column_list" Mode="In" Type="Boolean" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="include_timestamp" Mode="In" Type="Boolean" />
+            <Parameter Name="debug_mode" Mode="In" Type="Boolean" />
+            <Parameter Name="owner" Mode="In" Type="String" />
+            <Parameter Name="ommit_images" Mode="In" Type="Boolean" />
+            <Parameter Name="ommit_identity" Mode="In" Type="Boolean" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
+            <Parameter Name="cols_to_include" Mode="In" Type="String" />
+            <Parameter Name="cols_to_exclude" Mode="In" Type="String" />
+            <Parameter Name="disable_constraints" Mode="In" Type="Boolean" />
+            <Parameter Name="ommit_computed_cols" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="ReporteCarreraMaterias_Result">
+          <Property Type="Int32" Name="ID_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Abreviacion" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Materia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="ReporteCarreras_Result">
+          <Property Type="Int32" Name="ID_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Abreviacion" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="ReporteCarreraSemestre_Result">
+          <Property Type="Int32" Name="ID_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Abreviacion" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="Semestre" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="ReporteMaterias_Result">
+          <Property Type="String" Name="Materia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="ReporteRangoFechasCarreras_Result">
+          <Property Type="Int32" Name="ID_Carrera" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="16" />
+        </ComplexType>
+        <ComplexType Name="ReporteRangoFechasCarreraSemestre_Result">
+          <Property Type="Int32" Name="ID_Carrera" Nullable="false" />
+          <Property Type="Int32" Name="Semestre" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="33" Scale="19" />
+        </ComplexType>
+        <ComplexType Name="ReporteRangoFechasMaterias_Result">
+          <Property Type="String" Name="Materia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="16" />
+        </ComplexType>
+        <ComplexType Name="ReporteRangoFechasSemestres_Result">
+          <Property Type="Int32" Name="Semestre" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="16" />
+        </ComplexType>
+        <ComplexType Name="ReporteSemestres_Result">
+          <Property Type="Int32" Name="Semestre" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Porcentaje" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaboratoriosCINAPModelStoreContainer" CdmEntityContainer="LaboratoriosCINAPEntities">
+          <EntitySetMapping Name="Alumnoes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Carrera">
+              <MappingFragment StoreEntitySet="Carrera">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleGrupoes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.DetalleGrupo">
+              <MappingFragment StoreEntitySet="DetalleGrupo">
+                <ScalarProperty Name="ID_DetalleGrupo" ColumnName="ID_DetalleGrupo" />
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupoes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Laboratorios">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Laboratorio">
+              <MappingFragment StoreEntitySet="Laboratorio">
+                <ScalarProperty Name="ID_Laboratorio" ColumnName="ID_Laboratorio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maestroes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Maestro">
+              <MappingFragment StoreEntitySet="Maestro">
+                <ScalarProperty Name="ID_Maestro" ColumnName="ID_Maestro" />
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="ClaveEmpleado" ColumnName="ClaveEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="CodigoSerie" ColumnName="CodigoSerie" />
+                <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+                <ScalarProperty Name="ID_TipoMaterial" ColumnName="ID_TipoMaterial" />
+                <ScalarProperty Name="EstadoFuncional" ColumnName="EstadoFuncional" />
+                <ScalarProperty Name="EstadoDescripcion" ColumnName="EstadoDescripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroPrestamoLaboratorios">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RegistroPrestamoLaboratorio">
+              <MappingFragment StoreEntitySet="RegistroPrestamoLaboratorio">
+                <ScalarProperty Name="ID_RegistroPrestamoLaboratorio" ColumnName="ID_RegistroPrestamoLaboratorio" />
+                <ScalarProperty Name="ID_Laboratorio" ColumnName="ID_Laboratorio" />
+                <ScalarProperty Name="ID_Maestro" ColumnName="ID_Maestro" />
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="FechaEntrada" ColumnName="FechaEntrada" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="Asistencia" ColumnName="Asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroPrestamoMaterials">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RegistroPrestamoMaterial">
+              <MappingFragment StoreEntitySet="RegistroPrestamoMaterial">
+                <ScalarProperty Name="ID_RegistroPrestamoMaterial" ColumnName="ID_RegistroPrestamoMaterial" />
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="EstadoDescripcionEntrega" ColumnName="EstadoDescripcionEntrega" />
+                <ScalarProperty Name="EstadoDescripcionRecibido" ColumnName="EstadoDescripcionRecibido" />
+                <ScalarProperty Name="EstadoFuncionalEntrega" ColumnName="EstadoFuncionalEntrega" />
+                <ScalarProperty Name="EstadoFuncionalRecibido" ColumnName="EstadoFuncionalRecibido" />
+                <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+                <ScalarProperty Name="FechaRegreso" ColumnName="FechaRegreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reportes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaInicioPeriodo" ColumnName="FechaInicioPeriodo" />
+                <ScalarProperty Name="FechaTerminacionPeriodo" ColumnName="FechaTerminacionPeriodo" />
+                <ScalarProperty Name="IdTipoReporte" ColumnName="IdTipoReporte" />
+                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteItems">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.ReporteItem">
+              <MappingFragment StoreEntitySet="ReporteItem">
+                <ScalarProperty Name="ID_ReporteItem" ColumnName="ID_ReporteItem" />
+                <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMaterials">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoMaterial">
+              <MappingFragment StoreEntitySet="TipoMaterial">
+                <ScalarProperty Name="ID_TipoMaterial" ColumnName="ID_TipoMaterial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPersonas">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoPersona">
+              <MappingFragment StoreEntitySet="TipoPersona">
+                <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoReportes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoReporte">
+              <MappingFragment StoreEntitySet="TipoReporte">
+                <ScalarProperty Name="IdTipoReporte" ColumnName="IdTipoReporte" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuarios">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="ID_TipoUsuario" ColumnName="ID_TipoUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="ID_TipoUsuario" ColumnName="ID_TipoUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelacionPersonaGrupoes">
+            <EntityTypeMapping TypeName="LaboratoriosCINAPModel.RelacionPersonaGrupo">
+              <MappingFragment StoreEntitySet="RelacionPersonaGrupo">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="ID_TipoPersona" ColumnName="ID_TipoPersona" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreacionReporte" FunctionName="LaboratoriosCINAPModel.Store.CreacionReporte" />
+          <FunctionImportMapping FunctionImportName="GuardadoReporte" FunctionName="LaboratoriosCINAPModel.Store.GuardadoReporte" />
+          <FunctionImportMapping FunctionImportName="ReporteCarreraMaterias" FunctionName="LaboratoriosCINAPModel.Store.ReporteCarreraMaterias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteCarreraMaterias_Result">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteCarreras" FunctionName="LaboratoriosCINAPModel.Store.ReporteCarreras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteCarreras_Result">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteCarreraSemestre" FunctionName="LaboratoriosCINAPModel.Store.ReporteCarreraSemestre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteCarreraSemestre_Result">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteMaterias" FunctionName="LaboratoriosCINAPModel.Store.ReporteMaterias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteMaterias_Result">
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteRangoFechasCarreras" FunctionName="LaboratoriosCINAPModel.Store.ReporteRangoFechasCarreras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteRangoFechasCarreras_Result">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteRangoFechasCarreraSemestre" FunctionName="LaboratoriosCINAPModel.Store.ReporteRangoFechasCarreraSemestre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteRangoFechasCarreraSemestre_Result">
+                <ScalarProperty Name="ID_Carrera" ColumnName="ID_Carrera" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteRangoFechasMaterias" FunctionName="LaboratoriosCINAPModel.Store.ReporteRangoFechasMaterias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteRangoFechasMaterias_Result">
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteRangoFechasSemestres" FunctionName="LaboratoriosCINAPModel.Store.ReporteRangoFechasSemestres">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteRangoFechasSemestres_Result">
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReporteSemestres" FunctionName="LaboratoriosCINAPModel.Store.ReporteSemestres">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratoriosCINAPModel.ReporteSemestres_Result">
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="LaboratoriosCINAPModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="LaboratoriosCINAPModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="LaboratoriosCINAPModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_generate_inserts" FunctionName="LaboratoriosCINAPModel.Store.sp_generate_inserts" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="LaboratoriosCINAPModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="LaboratoriosCINAPModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="LaboratoriosCINAPModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="LaboratoriosCINAPModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

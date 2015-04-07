@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa999de57bce47f99daeca40d268081b" Name="Diagram1">
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Alumno" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Carrera" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.DetalleGrupo" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Grupo" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Laboratorio" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Maestro" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Material" Width="1.5" PointX="6" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Persona" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.RegistroPrestamoLaboratorio" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.RegistroPrestamoMaterial" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Reporte" Width="1.5" PointX="6" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.ReporteItem" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.sysdiagram" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.TipoMaterial" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.TipoPersona" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.TipoReporte" Width="1.5" PointX="3.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.TipoUsuario" Width="1.5" PointX="9.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.Usuario" Width="1.5" PointX="12" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoriosCINAPModel.RelacionPersonaGrupo" Width="1.5" PointX="10.75" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Alumno_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Grupo_Carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_DetalleGrupo_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_DetalleGrupo_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_RegistroPrestamoLaboratorio_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_RegistroPrestamoMaterial_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_ReporteItem_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK__RegistroP__ID_La__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK__RegistroP__ID_Ma__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Maestro_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK__RegistroP__ID_Ma__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Material_TipoMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Persona_TipoPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_RegistroPrestamoMaterial_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Reporte_TipoReporte" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_ReporteItem_Reporte" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoriosCINAPModel.FK_Usuario_TipoUsuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

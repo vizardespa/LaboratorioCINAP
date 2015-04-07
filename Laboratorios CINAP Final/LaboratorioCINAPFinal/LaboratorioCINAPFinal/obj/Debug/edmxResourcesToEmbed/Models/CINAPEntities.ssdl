@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaboratoriosCINAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="ID_Alumno" />
+    </Key>
+    <Property Name="ID_Alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Persona" Type="int" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Matricula" Type="int" />
+  </EntityType>
+  <EntityType Name="Carrera">
+    <Key>
+      <PropertyRef Name="ID_Carrera" />
+    </Key>
+    <Property Name="ID_Carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Abreviacion" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="DetalleGrupo">
+    <Key>
+      <PropertyRef Name="ID_DetalleGrupo" />
+    </Key>
+    <Property Name="ID_DetalleGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Persona" Type="int" Nullable="false" />
+    <Property Name="ID_Grupo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="ID_Grupo" />
+    </Key>
+    <Property Name="ID_Grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Semestre" Type="int" />
+    <Property Name="Materia" Type="varchar" MaxLength="50" />
+    <Property Name="ID_Carrera" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laboratorio">
+    <Key>
+      <PropertyRef Name="ID_Laboratorio" />
+    </Key>
+    <Property Name="ID_Laboratorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="300" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Maestro">
+    <Key>
+      <PropertyRef Name="ID_Maestro" />
+    </Key>
+    <Property Name="ID_Maestro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Persona" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Correo" Type="varchar" MaxLength="50" />
+    <Property Name="ClaveEmpleado" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="ID_Material" />
+    </Key>
+    <Property Name="ID_Material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoSerie" Type="varchar" MaxLength="20" />
+    <Property Name="Disponibilidad" Type="bit" />
+    <Property Name="ID_TipoMaterial" Type="int" Nullable="false" />
+    <Property Name="EstadoFuncional" Type="bit" />
+    <Property Name="EstadoDescripcion" Type="varchar" MaxLength="1000" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="ID_Persona" />
+    </Key>
+    <Property Name="ID_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TipoPersona" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegistroPrestamoLaboratorio">
+    <Key>
+      <PropertyRef Name="ID_RegistroPrestamoLaboratorio" />
+    </Key>
+    <Property Name="ID_RegistroPrestamoLaboratorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Laboratorio" Type="int" Nullable="false" />
+    <Property Name="ID_Maestro" Type="int" Nullable="false" />
+    <Property Name="ID_Grupo" Type="int" Nullable="false" />
+    <Property Name="FechaEntrada" Type="datetime" Nullable="false" />
+    <Property Name="FechaSalida" Type="datetime" Nullable="false" />
+    <Property Name="Asistencia" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegistroPrestamoMaterial">
+    <Key>
+      <PropertyRef Name="ID_RegistroPrestamoMaterial" />
+    </Key>
+    <Property Name="ID_RegistroPrestamoMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Material" Type="int" Nullable="false" />
+    <Property Name="ID_Persona" Type="int" Nullable="false" />
+    <Property Name="ID_Grupo" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="EstadoDescripcionEntrega" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="EstadoDescripcionRecibido" Type="varchar" MaxLength="1000" />
+    <Property Name="EstadoFuncionalEntrega" Type="bit" Nullable="false" />
+    <Property Name="EstadoFuncionalRecibido" Type="bit" />
+    <Property Name="FechaPrestamo" Type="datetime" Nullable="false" />
+    <Property Name="FechaRegreso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Reporte">
+    <Key>
+      <PropertyRef Name="ID_Reporte" />
+    </Key>
+    <Property Name="ID_Reporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="FechaInicioPeriodo" Type="datetime" Nullable="false" />
+    <Property Name="FechaTerminacionPeriodo" Type="datetime" Nullable="false" />
+    <Property Name="IdTipoReporte" Type="int" />
+    <Property Name="Temporal" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReporteItem">
+    <Key>
+      <PropertyRef Name="ID_ReporteItem" />
+    </Key>
+    <Property Name="ID_ReporteItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Reporte" Type="int" Nullable="false" />
+    <Property Name="ID_Grupo" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TipoMaterial">
+    <Key>
+      <PropertyRef Name="ID_TipoMaterial" />
+    </Key>
+    <Property Name="ID_TipoMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="TipoPersona">
+    <Key>
+      <PropertyRef Name="ID_TipoPersona" />
+    </Key>
+    <Property Name="ID_TipoPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TipoReporte">
+    <Key>
+      <PropertyRef Name="IdTipoReporte" />
+    </Key>
+    <Property Name="IdTipoReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CodeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="ID_TipoUsuario" />
+    </Key>
+    <Property Name="ID_TipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID_Usuario" />
+    </Key>
+    <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TipoUsuario" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Contrasena" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LaboratoriosCINAP.dbo.RelacionPersonaGrupo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RelacionPersonaGrupo">
+    <Key>
+      <PropertyRef Name="ID_Persona" />
+      <PropertyRef Name="TipoPersona" />
+      <PropertyRef Name="ID_TipoPersona" />
+      <PropertyRef Name="ID_Grupo" />
+    </Key>
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="ID_Persona" Type="int" Nullable="false" />
+    <Property Name="TipoPersona" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_TipoPersona" Type="int" Nullable="false" />
+    <Property Name="Materia" Type="varchar" MaxLength="50" />
+    <Property Name="ID_Grupo" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__RegistroP__ID_La__25869641">
+    <End Role="Laboratorio" Type="Self.Laboratorio" Multiplicity="1" />
+    <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratorio">
+        <PropertyRef Name="ID_Laboratorio" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoLaboratorio">
+        <PropertyRef Name="ID_Laboratorio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroP__ID_Ma__1920BF5C">
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
+    <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="ID_Material" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoMaterial">
+        <PropertyRef Name="ID_Material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroP__ID_Ma__267ABA7A">
+    <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+    <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maestro">
+        <PropertyRef Name="ID_Maestro" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoLaboratorio">
+        <PropertyRef Name="ID_Maestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alumno_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="ID_Persona" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="ID_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleGrupo_Grupo">
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+    <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="ID_Grupo" />
+      </Principal>
+      <Dependent Role="DetalleGrupo">
+        <PropertyRef Name="ID_Grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleGrupo_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="DetalleGrupo" Type="Self.DetalleGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="ID_Persona" />
+      </Principal>
+      <Dependent Role="DetalleGrupo">
+        <PropertyRef Name="ID_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grupo_Carrera">
+    <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera">
+        <PropertyRef Name="ID_Carrera" />
+      </Principal>
+      <Dependent Role="Grupo">
+        <PropertyRef Name="ID_Carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Maestro_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="ID_Persona" />
+      </Principal>
+      <Dependent Role="Maestro">
+        <PropertyRef Name="ID_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Material_TipoMaterial">
+    <End Role="TipoMaterial" Type="Self.TipoMaterial" Multiplicity="1" />
+    <End Role="Material" Type="Self.Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMaterial">
+        <PropertyRef Name="ID_TipoMaterial" />
+      </Principal>
+      <Dependent Role="Material">
+        <PropertyRef Name="ID_TipoMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persona_TipoPersona">
+    <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPersona">
+        <PropertyRef Name="ID_TipoPersona" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="ID_TipoPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegistroPrestamoLaboratorio_Grupo">
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+    <End Role="RegistroPrestamoLaboratorio" Type="Self.RegistroPrestamoLaboratorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="ID_Grupo" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoLaboratorio">
+        <PropertyRef Name="ID_Grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegistroPrestamoMaterial_Grupo">
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+    <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="ID_Grupo" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoMaterial">
+        <PropertyRef Name="ID_Grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegistroPrestamoMaterial_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="RegistroPrestamoMaterial" Type="Self.RegistroPrestamoMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="ID_Persona" />
+      </Principal>
+      <Dependent Role="RegistroPrestamoMaterial">
+        <PropertyRef Name="ID_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reporte_TipoReporte">
+    <End Role="TipoReporte" Type="Self.TipoReporte" Multiplicity="0..1" />
+    <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoReporte">
+        <PropertyRef Name="IdTipoReporte" />
+      </Principal>
+      <Dependent Role="Reporte">
+        <PropertyRef Name="IdTipoReporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReporteItem_Grupo">
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+    <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="ID_Grupo" />
+      </Principal>
+      <Dependent Role="ReporteItem">
+        <PropertyRef Name="ID_Grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReporteItem_Reporte">
+    <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+    <End Role="ReporteItem" Type="Self.ReporteItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reporte">
+        <PropertyRef Name="ID_Reporte" />
+      </Principal>
+      <Dependent Role="ReporteItem">
+        <PropertyRef Name="ID_Reporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="ID_TipoUsuario" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="ID_TipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreacionReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GuardadoReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Guardar" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="ReporteCarreraMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdReporte" Type="int" Mode="In" />
+    <Parameter Name="IdCarrera" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReporteCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdReporte" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReporteCarreraSemestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdReporte" Type="int" Mode="In" />
+    <Parameter Name="IdCarrera" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReporteMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdReporte" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReporteRangoFechasCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ReporteRangoFechasCarreraSemestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+    <Parameter Name="IdCarrera" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReporteRangoFechasMaterias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ReporteRangoFechasSemestres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="FechaCierre" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ReporteSemestres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdReporte" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_generate_inserts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="table_name" Type="varchar" Mode="In" />
+    <Parameter Name="target_table" Type="varchar" Mode="In" />
+    <Parameter Name="include_column_list" Type="bit" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="include_timestamp" Type="bit" Mode="In" />
+    <Parameter Name="debug_mode" Type="bit" Mode="In" />
+    <Parameter Name="owner" Type="varchar" Mode="In" />
+    <Parameter Name="ommit_images" Type="bit" Mode="In" />
+    <Parameter Name="ommit_identity" Type="bit" Mode="In" />
+    <Parameter Name="top" Type="int" Mode="In" />
+    <Parameter Name="cols_to_include" Type="varchar" Mode="In" />
+    <Parameter Name="cols_to_exclude" Type="varchar" Mode="In" />
+    <Parameter Name="disable_constraints" Type="bit" Mode="In" />
+    <Parameter Name="ommit_computed_cols" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="LaboratoriosCINAPModelStoreContainer">
+    <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleGrupo" EntityType="Self.DetalleGrupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Laboratorio" EntityType="Self.Laboratorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistroPrestamoLaboratorio" EntityType="Self.RegistroPrestamoLaboratorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistroPrestamoMaterial" EntityType="Self.RegistroPrestamoMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReporteItem" EntityType="Self.ReporteItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoMaterial" EntityType="Self.TipoMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoReporte" EntityType="Self.TipoReporte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RelacionPersonaGrupo" EntityType="Self.RelacionPersonaGrupo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [RelacionPersonaGrupo].[Nombre] AS [Nombre], 
+    [RelacionPersonaGrupo].[ID_Persona] AS [ID_Persona], 
+    [RelacionPersonaGrupo].[TipoPersona] AS [TipoPersona], 
+    [RelacionPersonaGrupo].[ID_TipoPersona] AS [ID_TipoPersona], 
+    [RelacionPersonaGrupo].[Materia] AS [Materia], 
+    [RelacionPersonaGrupo].[ID_Grupo] AS [ID_Grupo]
+    FROM [dbo].[RelacionPersonaGrupo] AS [RelacionPersonaGrupo]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__RegistroP__ID_La__25869641" Association="Self.FK__RegistroP__ID_La__25869641">
+      <End Role="Laboratorio" EntitySet="Laboratorio" />
+      <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroP__ID_Ma__1920BF5C" Association="Self.FK__RegistroP__ID_Ma__1920BF5C">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroP__ID_Ma__267ABA7A" Association="Self.FK__RegistroP__ID_Ma__267ABA7A">
+      <End Role="Maestro" EntitySet="Maestro" />
+      <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alumno_Persona" Association="Self.FK_Alumno_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleGrupo_Grupo" Association="Self.FK_DetalleGrupo_Grupo">
+      <End Role="Grupo" EntitySet="Grupo" />
+      <End Role="DetalleGrupo" EntitySet="DetalleGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleGrupo_Persona" Association="Self.FK_DetalleGrupo_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="DetalleGrupo" EntitySet="DetalleGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grupo_Carrera" Association="Self.FK_Grupo_Carrera">
+      <End Role="Carrera" EntitySet="Carrera" />
+      <End Role="Grupo" EntitySet="Grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maestro_Persona" Association="Self.FK_Maestro_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Maestro" EntitySet="Maestro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Material_TipoMaterial" Association="Self.FK_Material_TipoMaterial">
+      <End Role="TipoMaterial" EntitySet="TipoMaterial" />
+      <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+      <End Role="TipoPersona" EntitySet="TipoPersona" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegistroPrestamoLaboratorio_Grupo" Association="Self.FK_RegistroPrestamoLaboratorio_Grupo">
+      <End Role="Grupo" EntitySet="Grupo" />
+      <End Role="RegistroPrestamoLaboratorio" EntitySet="RegistroPrestamoLaboratorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegistroPrestamoMaterial_Grupo" Association="Self.FK_RegistroPrestamoMaterial_Grupo">
+      <End Role="Grupo" EntitySet="Grupo" />
+      <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegistroPrestamoMaterial_Persona" Association="Self.FK_RegistroPrestamoMaterial_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="RegistroPrestamoMaterial" EntitySet="RegistroPrestamoMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reporte_TipoReporte" Association="Self.FK_Reporte_TipoReporte">
+      <End Role="TipoReporte" EntitySet="TipoReporte" />
+      <End Role="Reporte" EntitySet="Reporte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReporteItem_Grupo" Association="Self.FK_ReporteItem_Grupo">
+      <End Role="Grupo" EntitySet="Grupo" />
+      <End Role="ReporteItem" EntitySet="ReporteItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReporteItem_Reporte" Association="Self.FK_ReporteItem_Reporte">
+      <End Role="Reporte" EntitySet="Reporte" />
+      <End Role="ReporteItem" EntitySet="ReporteItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
