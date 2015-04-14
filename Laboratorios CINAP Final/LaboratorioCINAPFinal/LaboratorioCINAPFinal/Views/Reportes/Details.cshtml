@@ -1,0 +1,75 @@
+﻿@model LaboratorioCINAPFinal.Models.Reporte
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Nombre)</h2>
+<h4>@Html.DisplayFor(model => model.FechaInicioPeriodo) - @Html.DisplayFor(model => model.FechaTerminacionPeriodo)</h4>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        
+        <div class="col-md-10">
+            Selecciona el tipo de reporte:
+            @Html.DropDownList("IdTipoReporte", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-10" id="drdlC">
+            Selecciona la carrera:
+            @Html.DropDownList("IdCarrera", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+}
+@*
+    <div>
+        <h4>Reporte</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaInicioPeriodo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaInicioPeriodo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaTerminacionPeriodo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaTerminacionPeriodo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Temporal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Temporal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoReporte.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoReporte.Nombre)
+            </dd>
+
+        </dl>
+    </div>
+*@
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Reporte }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
