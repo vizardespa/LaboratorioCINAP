@@ -9,17 +9,17 @@
 
 @using (Html.BeginForm())
 {
+    <div id="chartContainer" style="width:500px; height:280px;"></div>
     <div class="form-group">
-        
+
         <div class="col-md-10">
-            Selecciona el tipo de reporte:
-            @Html.DropDownList("IdTipoReporte", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", htmlAttributes: new { @class = "form-control" })
         </div>
         <div class="col-md-10" id="drdlC">
-            Selecciona la carrera:
-            @Html.DropDownList("IdCarrera", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("IdCarrera", null, "- Selecciona la carrera -", htmlAttributes: new { @class = "hidden" })
         </div>
     </div>
+    
 }
 @*
     <div>
@@ -69,6 +69,60 @@
         </dl>
     </div>
 *@
+
+@section scripts
+{
+    
+    <script type="text/javascript" src="/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/script/jquery.canvasjs.min.js"></script>
+    
+
+    <script type="text/javascript">
+
+        $(function () {
+         //Better to construct options first and then pass it as a parameter
+            var options = {
+                data: [
+                 {
+                     type: "column", //change it to column, spline, line, pie, etc
+                        dataPoints: [
+                          { x: 10, y: 10 },
+                          { x: 20, y: 14 },
+                          { x: 30, y: 18 },
+                          { x: 40, y: 22 },
+                          { x: 50, y: 18 },
+                          { x: 60, y: 28 }
+                        ]
+                 }
+            ]
+        };
+
+        $("#chartContainer").CanvasJSChart(options);
+
+        $("#addDataPoint").click(function () {
+
+                var chart = $("#chartContainer").CanvasJSChart();
+                var length = chart.options.data[0].dataPoints.length;
+                chart.options.data[0].dataPoints.push({ x: (length + 1) * 10, y: Math.round((30 - Math.random() * 10)) });
+                chart.render();
+
+            });
+
+        });
+
+
+</script>
+}
+
+@*
+    @{
+        Chart myChart = new Chart(width: 600, height: 400);
+        myChart.AddTitle("ASDF");
+        myChart.AddSeries(chartType: "Column", name: "Test", xValue: new [] {1, 2, 3, 4, 5}, yValues: new[] { "2", "6", "4", "5", "3" });
+        myChart.Write();
+    }
+*@
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Reporte }) |
     @Html.ActionLink("Back to List", "Index")

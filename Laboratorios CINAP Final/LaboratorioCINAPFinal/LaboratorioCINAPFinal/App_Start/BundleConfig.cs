@@ -26,6 +26,11 @@ namespace LaboratorioCINAPFinal
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/canvas").Include(
+                      "~/Scripts/jquery.canvasjs.js",
+                      "~/Scripts/canvasjs.js",
+                      "~/Scripts/excanvas.js"));
         }
     }
 }
