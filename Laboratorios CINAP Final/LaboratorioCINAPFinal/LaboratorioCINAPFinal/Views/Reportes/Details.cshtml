@@ -13,10 +13,10 @@
     <div class="form-group">
 
         <div class="col-md-10">
-            @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", htmlAttributes: new { @class = "ddlTipoReporte" })
         </div>
         <div class="col-md-10" id="drdlC">
-            @Html.DropDownList("IdCarrera", null, "- Selecciona la carrera -", htmlAttributes: new { @class = "hidden" })
+            @Html.DropDownList("IdCarrera", null, "- Selecciona la carrera -", htmlAttributes: new { @class = "ddlCarrera" })
         </div>
     </div>
     
@@ -80,6 +80,7 @@
     <script type="text/javascript">
 
         $(function () {
+            $(".ddlCarrera").hide();
          //Better to construct options first and then pass it as a parameter
             var options = {
                 data: [
@@ -107,6 +108,36 @@
                 chart.render();
 
             });
+
+        });
+
+        //Opciones de seleccion de reporte...
+        $(".ddlTipoReporte").change(function () {
+            var tipoReporte = $(".ddlTipoReporte option:selected").text();
+            //alert(tipoReporte);
+
+            var carrera = $(".ddlCarrera option:selected").text();
+            //alert(carrera);
+
+            switch (tipoReporte) {
+                case "ReporteCarreraSemestre":
+                    $(".ddlCarrera").show();
+                    break;
+                case "ReporteMaterias":
+                    $(".ddlCarrera").hide();
+                    break;
+                case "ReporteCarreras":
+                    $(".ddlCarrera").hide();
+                    break;
+                case "ReporteSemestres":
+                    $(".ddlCarrera").hide();
+                    break;
+                case "ReporteCarreraMaterias":
+                    $(".ddlCarrera").show();
+                    break;
+                default:
+                    $(".ddlCarrera").hide();
+            }
 
         });
 
