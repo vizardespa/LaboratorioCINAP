@@ -1,0 +1,66 @@
+﻿@model LaboratorioCINAPFinal.Models.RegistroPrestamoLaboratorio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegistroPrestamoLaboratorio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asistencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asistencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grupo.Materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grupo.Materia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Laboratorio.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratorio.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maestro.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maestro.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_RegistroPrestamoLaboratorio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

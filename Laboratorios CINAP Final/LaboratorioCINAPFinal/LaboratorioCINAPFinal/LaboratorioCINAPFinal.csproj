@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegistroPrestamoLaboratoriosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -361,6 +362,11 @@
     <Content Include="Views\Reportes\Details.cshtml" />
     <Content Include="Views\Reportes\Edit.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\RegistroPrestamoLaboratorios\Create.cshtml" />
+    <Content Include="Views\RegistroPrestamoLaboratorios\Delete.cshtml" />
+    <Content Include="Views\RegistroPrestamoLaboratorios\Details.cshtml" />
+    <Content Include="Views\RegistroPrestamoLaboratorios\Edit.cshtml" />
+    <Content Include="Views\RegistroPrestamoLaboratorios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
