@@ -9,18 +9,19 @@
 
 @using (Html.BeginForm())
 {
-    <div id="chartContainer" style="width:500px; height:280px;"></div>
+    <div id="chartContainer" style="width:1200px; height:400px;"></div>
     <div class="form-group">
 
         <div class="col-md-10">
-            @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", new { @class = "form-control",  @onchange = "changeReporte(this)" })
         </div>
-        <div class="col-md-10" id="drdlC">
+        @*<div class="col-md-10" id="drdlC">
             @Html.DropDownList("IdCarrera", null, "- Selecciona la carrera -", htmlAttributes: new { @class = "hidden" })
-        </div>
+        </div>*@
     </div>
     
 }
+
 @*
     <div>
         <h4>Reporte</h4>
@@ -70,6 +71,48 @@
     </div>
 *@
 
+@{
+    LaboratorioCINAPFinal.Models.LaboratoriosCINAPEntities db = new LaboratorioCINAPFinal.Models.LaboratoriosCINAPEntities();
+    /*System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreras_Result> resCarrera = db.ReporteCarreras(Model.ID_Reporte);
+    System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteMaterias_Result> resMateria = db.ReporteMaterias(Model.ID_Reporte);
+    System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteSemestres_Result> resSemestre = db.ReporteSemestres(Model.ID_Reporte);
+    List<LaboratorioCINAPFinal.Models.Carrera> carreras = db.Carreras.ToList();
+    List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>> resCarreraMateria = new List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>>();
+    List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>> resCarreraSemestre = new List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>>();
+    foreach (LaboratorioCINAPFinal.Models.Carrera carrera in carreras)
+    {
+        resCarreraMateria.Add(db.ReporteCarreraMaterias(Model.ID_Reporte, carrera.ID_Carrera));
+        resCarreraSemestre.Add(db.ReporteCarreraSemestre(Model.ID_Reporte, carrera.ID_Carrera));
+    }
+    */
+    List<LaboratorioCINAPFinal.Models.ReporteCarreras_Result> resCarrera = db.ReporteCarreras(Model.ID_Reporte).ToList();
+    List<LaboratorioCINAPFinal.Models.ReporteMaterias_Result> resMateria = db.ReporteMaterias(Model.ID_Reporte).ToList();
+    List<LaboratorioCINAPFinal.Models.ReporteSemestres_Result> resSemestre = db.ReporteSemestres(Model.ID_Reporte).ToList();
+    List<LaboratorioCINAPFinal.Models.Carrera> carreras = db.Carreras.ToList();
+    List<List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>> resCarreraMateria = new List<List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>>();
+    List<List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>> resCarreraSemestre = new List<List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>>();
+    foreach (LaboratorioCINAPFinal.Models.Carrera carrera in carreras)
+    {
+        resCarreraMateria.Add(db.ReporteCarreraMaterias(Model.ID_Reporte, carrera.ID_Carrera).ToList());
+        resCarreraSemestre.Add(db.ReporteCarreraSemestre(Model.ID_Reporte, carrera.ID_Carrera).ToList());
+    }
+
+}
+
+@*<div>
+        <ul>
+            @while(qwert.MoveNext())
+            {
+                <li>@qwert.Current</li>
+            }
+            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreras_Result result in asdf)
+            {
+                <li>@result.Porcentaje</li>
+            }
+        </ul>
+    </div>
+*@
+
 @section scripts
 {
     
@@ -79,19 +122,19 @@
 
     <script type="text/javascript">
 
-        $(function () {
+        @*$(function () {
          //Better to construct options first and then pass it as a parameter
             var options = {
                 data: [
                  {
                      type: "column", //change it to column, spline, line, pie, etc
                         dataPoints: [
-                          { x: 10, y: 10 },
-                          { x: 20, y: 14 },
-                          { x: 30, y: 18 },
-                          { x: 40, y: 22 },
-                          { x: 50, y: 18 },
-                          { x: 60, y: 28 }
+                          { label: "Hi", y: 10 },
+                          { label: "There", y: 14 },
+                          { label: "You", y: 18 },
+                          { label: "Are", y: 22 },
+                          { label: "Goombaz", y: 18 },
+                          { label: "LOL", y: 28 }
                         ]
                  }
             ]
@@ -109,19 +152,257 @@
             });
 
         });
+        *@
 
+    var chart;
+    window.onload = function () {
+        chart = new CanvasJS.Chart("chartContainer", {
+
+            title: {
+                text: ""
+            },
+            data: [ ],
+            axisX: {
+                labelMaxWidth: 110,
+                labelWrap: true,
+                tickLength: 0,
+                valueFormatString: " ",
+                labelFontSize: 15
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: function (e) {
+                    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                        e.dataSeries.visible = false;
+                    } else {
+                        e.dataSeries.visible = true;
+                    }
+
+                    e.chart.render();
+                }
+            }
+
+
+
+        });
+
+        chart.options.data.push({legendText: "Reporte Carrera",
+            name: "Carrera",
+            showInLegend: false,
+            type: "column",
+            visible: false,
+            indexLabel: "{y}",
+            dataPoints: [ ]});
+        @foreach (LaboratorioCINAPFinal.Models.ReporteCarreras_Result result in resCarrera)
+        {
+            <text>
+        chart.options.data[0].dataPoints.push({y: @result.Cantidad, label: "@result.Abreviacion", toolTipContent: "@result.Nombre: @result.Cantidad (@result.Porcentaje%)"})
+        </text>
+        }
+
+        chart.options.data.push({legendText: "Reporte Materias",
+            name: "Materia",
+            showInLegend: false,
+            type: "column",
+            visible: false,
+            indexLabel: "{y}",
+            dataPoints: [ ]});
+        @foreach (LaboratorioCINAPFinal.Models.ReporteMaterias_Result result in resMateria)
+            {
+            <text>
+        chart.options.data[1].dataPoints.push({y: @result.Cantidad, label: "@result.Materia", toolTipContent: "@result.Materia: @result.Cantidad (@result.Porcentaje%)"})
+        </text>
+        }
+
+        chart.options.data.push({legendText: "Reporte Semestres",
+            name: "Semestre",
+            showInLegend: false,
+            type: "column",
+            visible: false,
+            indexLabel: "{y}",
+            dataPoints: [ ]});
+        @foreach (LaboratorioCINAPFinal.Models.ReporteSemestres_Result result in resSemestre)
+            {
+            <text>
+        chart.options.data[2].dataPoints.push({y: @result.Cantidad, label: "@result.Semestre° Semestre", toolTipContent: "@result.Semestre° Semestre: @result.Cantidad (@result.Porcentaje%)"})
+        </text>
+        }
+
+        @foreach (List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result> carrera in resCarreraMateria)
+            {
+            <text>
+        chart.options.data.push({legendText: "@carrera[0].Abreviacion",
+            name: "CarreraMateria",
+            showInLegend: false,
+            type: "column",
+            visible: false,
+            indexLabel: "{y}",
+            dataPoints: [ ]});
+        if(chart.options.data[chart.options.data.length - 2].name == "CarreraMateria")
+        {
+            for(i = 0; i < chart.options.data[chart.options.data.length - 2].dataPoints.length; i++)
+            {
+                chart.options.data[chart.options.data.length - 1].dataPoints.push({y: null, label: chart.options.data[chart.options.data.length - 2].dataPoints[i].label, toolTipContent: ""});
+            }
+            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result result in carrera)
+            {
+                <text>
+            pos = 0;
+            while(pos < chart.options.data[chart.options.data.length - 1].dataPoints.length && "@result.Materia" != chart.options.data[chart.options.data.length - 1].dataPoints[pos].label)
+            {
+                pos+=1;
+            }
+            if(pos >= chart.options.data[chart.options.data.length - 1].dataPoints.length)
+            {
+                chart.options.data[chart.options.data.length - 1].dataPoints.push({y: @result.Cantidad, label: "@result.Materia", toolTipContent: "@result.Abreviacion - @result.Materia: @result.Cantidad (@result.Porcentaje%)"});
+            }
+            else
+            {
+                chart.options.data[chart.options.data.length - 1].dataPoints[pos].y = @result.Cantidad;
+                chart.options.data[chart.options.data.length - 1].dataPoints[pos].toolTipContent = "@result.Abreviacion - @result.Materia: @result.Cantidad (@result.Porcentaje%)";
+            }
+            </text>
+            }
+        }
+        else
+        {
+            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result result in carrera)
+            {
+                <text>
+            chart.options.data[chart.options.data.length - 1].dataPoints.push({y: @result.Cantidad, label: "@result.Materia", toolTipContent: "@result.Abreviacion - @result.Materia: @result.Cantidad (@result.Porcentaje%)"})
+            </text>
+            }
+        }
+        </text>
+        }
+
+        @foreach (List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result> carrera in resCarreraSemestre)
+        {
+            <text>
+        chart.options.data.push({legendText: "@carrera[0].Abreviacion",
+            name: "CarreraSemestre",
+            showInLegend: false,
+            type: "column",
+            visible: false,
+            indexLabel: "{y}",
+            dataPoints: [ ]});
+        @for(int i = 0; i < 8; i++)
+        {
+            <text>
+        chart.options.data[chart.options.data.length - 1].dataPoints.push({y: null, label: "@(i+1)° Semestre", toolTipContent: ""})
+        </text>
+        }
+        @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result result in carrera)
+            {
+                <text>
+        chart.options.data[chart.options.data.length - 1].dataPoints[@result.Semestre].y = @result.Cantidad;
+        chart.options.data[chart.options.data.length - 1].dataPoints[@result.Semestre].toolTipContent = "@result.Abreviacion - @result.Semestre° Semestre: @result.Cantidad (@result.Porcentaje%)";
+        </text>
+            }
+        </text>
+    }
+
+        chart.render();
+
+    }
+
+    function changeReporte(value) {
+
+
+        if(value.options[value.selectedIndex].text == "ReporteCarreraSemestre")
+        {
+            chart.options.title.text = "Préstamos en cada Semestre por Carrera";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                if(chart.options.data[i].name == "CarreraSemestre")
+                {
+                    chart.options.data[i].visible = true;
+                    chart.options.data[i].showInLegend = true;
+                }
+                else
+                {
+                    chart.options.data[i].visible = false;
+                    chart.options.data[i].showInLegend = false;
+                }
+            }
+        }
+        else if(value.options[value.selectedIndex].text == "ReporteMaterias")
+        {
+            chart.options.title.text = "Préstamos en cada Materia";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                if(chart.options.data[i].name == "Materia")
+                {
+                    chart.options.data[i].visible = true;
+                }
+                else
+                {
+                    chart.options.data[i].visible = false;
+                    chart.options.data[i].showInLegend = false;
+                }
+            }
+        }
+        else if(value.options[value.selectedIndex].text == "ReporteCarreras")
+        {
+            chart.options.title.text = "Préstamos en cada Carrera";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                if(chart.options.data[i].name == "Carrera")
+                {
+                    chart.options.data[i].visible = true;
+                }
+                else
+                {
+                    chart.options.data[i].visible = false;
+                    chart.options.data[i].showInLegend = false;
+                }
+            }
+        }
+        else if(value.options[value.selectedIndex].text == "ReporteSemestres")
+        {
+            chart.options.title.text = "Préstamos en cada Semestre";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                if(chart.options.data[i].name == "Semestre")
+                {
+                    chart.options.data[i].visible = true;
+                }
+                else
+                {
+                    chart.options.data[i].visible = false;
+                    chart.options.data[i].showInLegend = false;
+                }
+            }
+        }
+        else if(value.options[value.selectedIndex].text == "ReporteCarreraMaterias")
+        {
+            chart.options.title.text = "Préstamos en cada Materia por Carrera";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                if(chart.options.data[i].name == "CarreraMateria")
+                {
+                    chart.options.data[i].visible = true;
+                    chart.options.data[i].showInLegend = true;
+                }
+                else
+                {
+                    chart.options.data[i].visible = false;
+                    chart.options.data[i].showInLegend = false;
+                }
+            }
+        }
+
+        chart.render();
+
+    }
 
 </script>
+
+
 }
 
-@*
-    @{
-        Chart myChart = new Chart(width: 600, height: 400);
-        myChart.AddTitle("ASDF");
-        myChart.AddSeries(chartType: "Column", name: "Test", xValue: new [] {1, 2, 3, 4, 5}, yValues: new[] { "2", "6", "4", "5", "3" });
-        myChart.Write();
-    }
-*@
+
+    
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Reporte }) |
