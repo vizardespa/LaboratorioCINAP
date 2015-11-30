@@ -1,0 +1,87 @@
+﻿@model IEnumerable<LaboratorioCINAPFinal.Models.RegistroPrestamoMaterial>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoDescripcionEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoDescripcionRecibido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoFuncionalEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoFuncionalRecibido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPrestamo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupo.Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Material.CodigoSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona.ID_Persona)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoDescripcionEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoDescripcionRecibido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoFuncionalEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoFuncionalRecibido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPrestamo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupo.Materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material.CodigoSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona.ID_Persona)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_RegistroPrestamoMaterial }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_RegistroPrestamoMaterial }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_RegistroPrestamoMaterial })
+        </td>
+    </tr>
+}
+
+</table>

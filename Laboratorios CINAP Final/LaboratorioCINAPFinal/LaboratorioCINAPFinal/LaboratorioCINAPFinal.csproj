@@ -164,6 +164,8 @@
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\RegistroPrestamoMaterialsController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -361,6 +363,16 @@
     <Content Include="Views\Reportes\Details.cshtml" />
     <Content Include="Views\Reportes\Edit.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\RegistroPrestamoMaterials\Create.cshtml" />
+    <Content Include="Views\RegistroPrestamoMaterials\Delete.cshtml" />
+    <Content Include="Views\RegistroPrestamoMaterials\Details.cshtml" />
+    <Content Include="Views\RegistroPrestamoMaterials\Edit.cshtml" />
+    <Content Include="Views\RegistroPrestamoMaterials\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

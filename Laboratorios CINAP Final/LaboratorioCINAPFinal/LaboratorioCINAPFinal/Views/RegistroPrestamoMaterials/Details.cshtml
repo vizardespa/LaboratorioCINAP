@@ -1,0 +1,98 @@
+﻿@model LaboratorioCINAPFinal.Models.RegistroPrestamoMaterial
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegistroPrestamoMaterial</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoDescripcionEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDescripcionEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoDescripcionRecibido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDescripcionRecibido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoFuncionalEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoFuncionalEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoFuncionalRecibido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoFuncionalRecibido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPrestamo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPrestamo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grupo.Materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grupo.Materia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Material.CodigoSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material.CodigoSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.ID_Persona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.ID_Persona)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_RegistroPrestamoMaterial }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
