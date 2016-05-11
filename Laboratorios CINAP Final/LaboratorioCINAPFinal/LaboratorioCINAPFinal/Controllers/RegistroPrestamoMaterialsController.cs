@@ -52,9 +52,10 @@ namespace LaboratorioCINAPFinal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_RegistroPrestamoMaterial,ID_Material,ID_Persona,ID_Grupo,Estado,EstadoDescripcionEntrega,EstadoDescripcionRecibido,EstadoFuncionalEntrega,EstadoFuncionalRecibido,FechaPrestamo,FechaRegreso")] RegistroPrestamoMaterial registroPrestamoMaterial)
         {
+
             if (ModelState.IsValid)
             {
-                db.RegistroPrestamoMaterials.Add(registroPrestamoMaterial);
+                db.RegistroPrestamoMaterials.Add(Prepararobjetoparainsert(registroPrestamoMaterial));
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -135,6 +136,18 @@ namespace LaboratorioCINAPFinal.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private RegistroPrestamoMaterial Prepararobjetoparainsert(RegistroPrestamoMaterial registroPrestamoMaterial)
+        {
+            RegistroPrestamoMaterial reg = registroPrestamoMaterial;
+            var maxItem =
+           db.RegistroPrestamoLaboratorios.OrderByDescending(i => i.ID_RegistroPrestamoLaboratorio).FirstOrDefault();
+            var newID = maxItem == null ? 1 : maxItem.ID_RegistroPrestamoLaboratorio + 1;
+            reg.ID_RegistroPrestamoMaterial = newID;
+
+            var IDgrup = db.Grupoes.SqlQuery("SELECT ID_Grupo FROM Grupo WHERE Materia={0}",registroPrestamoMaterial.Grupo);
+            return registroPrestamoMaterial;
         }
     }
 }

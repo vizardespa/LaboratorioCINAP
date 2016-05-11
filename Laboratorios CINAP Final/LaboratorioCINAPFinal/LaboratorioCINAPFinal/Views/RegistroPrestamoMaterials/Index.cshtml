@@ -12,6 +12,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Material.CodigoSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona.ID_Persona)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
@@ -35,17 +41,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Grupo.Materia)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Material.CodigoSerie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Persona.ID_Persona)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material.CodigoSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona.ID_Persona)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
@@ -71,15 +77,9 @@
             @Html.DisplayFor(modelItem => item.Grupo.Materia)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Material.CodigoSerie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Persona.ID_Persona)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_RegistroPrestamoMaterial }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_RegistroPrestamoMaterial }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_RegistroPrestamoMaterial })
+            @Html.ActionLink("Edit", "Edit", new {id = item.ID_RegistroPrestamoMaterial}) |
+            @Html.ActionLink("Details", "Details", new {id = item.ID_RegistroPrestamoMaterial}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.ID_RegistroPrestamoMaterial})
         </td>
     </tr>
 }
