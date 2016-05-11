@@ -29,13 +29,23 @@ namespace LaboratorioCINAPFinal.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Reporte reporte = db.Reportes.Find(id);
-            Carrera carrera = db.Carreras.Find(1);
             if (reporte == null)
             {
                 return HttpNotFound();
             }
-
-            ViewBag.IdCarrera = new SelectList(db.Carreras, "ID_Carrera", "Nombre", carrera.ID_Carrera);
+            ViewBag.resCarrera = db.ReporteCarreras(reporte.ID_Reporte).ToList();
+            ViewBag.resMateria = db.ReporteMaterias(reporte.ID_Reporte).ToList();
+            ViewBag.resSemestre = db.ReporteSemestres(reporte.ID_Reporte).ToList();
+            ViewBag.carreras = db.Carreras.ToList();
+            List<List<ReporteCarreraMaterias_Result>> resCarreraMateria = new List<List<ReporteCarreraMaterias_Result>>();
+            List<List<ReporteCarreraSemestre_Result>> resCarreraSemestre = new List<List<ReporteCarreraSemestre_Result>>();
+            foreach (Carrera carrera in ViewBag.carreras)
+            {
+                resCarreraMateria.Add(db.ReporteCarreraMaterias(reporte.ID_Reporte, carrera.ID_Carrera).ToList());
+                resCarreraSemestre.Add(db.ReporteCarreraSemestre(reporte.ID_Reporte, carrera.ID_Carrera).ToList());
+            }
+            ViewBag.resCarreraMateria = resCarreraMateria;
+            ViewBag.resCarreraSemestre = resCarreraSemestre;
             ViewBag.IdTipoReporte = new SelectList(db.TipoReportes, "IdTipoReporte", "Nombre", reporte.IdTipoReporte);
             return View(reporte);
         }

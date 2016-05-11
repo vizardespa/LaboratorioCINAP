@@ -1,4 +1,5 @@
-﻿@model LaboratorioCINAPFinal.Models.Reporte
+﻿@using LaboratorioCINAPFinal.Models
+@model Reporte
 
 @{
     ViewBag.Title = "Details";
@@ -15,103 +16,9 @@
         <div class="col-md-10">
             @Html.DropDownList("IdTipoReporte", null, "- Selecciona el tipo de reporte -", new { @class = "form-control",  @onchange = "changeReporte(this)" })
         </div>
-        @*<div class="col-md-10" id="drdlC">
-            @Html.DropDownList("IdCarrera", null, "- Selecciona la carrera -", htmlAttributes: new { @class = "hidden" })
-        </div>*@
     </div>
     
 }
-
-@*
-    <div>
-        <h4>Reporte</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Nombre)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.FechaInicioPeriodo)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FechaInicioPeriodo)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.FechaTerminacionPeriodo)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FechaTerminacionPeriodo)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Temporal)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Temporal)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TipoReporte.Nombre)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TipoReporte.Nombre)
-            </dd>
-
-        </dl>
-    </div>
-*@
-
-@{
-    LaboratorioCINAPFinal.Models.LaboratoriosCINAPEntities db = new LaboratorioCINAPFinal.Models.LaboratoriosCINAPEntities();
-    /*System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreras_Result> resCarrera = db.ReporteCarreras(Model.ID_Reporte);
-    System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteMaterias_Result> resMateria = db.ReporteMaterias(Model.ID_Reporte);
-    System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteSemestres_Result> resSemestre = db.ReporteSemestres(Model.ID_Reporte);
-    List<LaboratorioCINAPFinal.Models.Carrera> carreras = db.Carreras.ToList();
-    List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>> resCarreraMateria = new List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>>();
-    List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>> resCarreraSemestre = new List<System.Data.Entity.Core.Objects.ObjectResult<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>>();
-    foreach (LaboratorioCINAPFinal.Models.Carrera carrera in carreras)
-    {
-        resCarreraMateria.Add(db.ReporteCarreraMaterias(Model.ID_Reporte, carrera.ID_Carrera));
-        resCarreraSemestre.Add(db.ReporteCarreraSemestre(Model.ID_Reporte, carrera.ID_Carrera));
-    }
-    */
-    List<LaboratorioCINAPFinal.Models.ReporteCarreras_Result> resCarrera = db.ReporteCarreras(Model.ID_Reporte).ToList();
-    List<LaboratorioCINAPFinal.Models.ReporteMaterias_Result> resMateria = db.ReporteMaterias(Model.ID_Reporte).ToList();
-    List<LaboratorioCINAPFinal.Models.ReporteSemestres_Result> resSemestre = db.ReporteSemestres(Model.ID_Reporte).ToList();
-    List<LaboratorioCINAPFinal.Models.Carrera> carreras = db.Carreras.ToList();
-    List<List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>> resCarreraMateria = new List<List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result>>();
-    List<List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>> resCarreraSemestre = new List<List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result>>();
-    foreach (LaboratorioCINAPFinal.Models.Carrera carrera in carreras)
-    {
-        resCarreraMateria.Add(db.ReporteCarreraMaterias(Model.ID_Reporte, carrera.ID_Carrera).ToList());
-        resCarreraSemestre.Add(db.ReporteCarreraSemestre(Model.ID_Reporte, carrera.ID_Carrera).ToList());
-    }
-
-}
-
-@*<div>
-        <ul>
-            @while(qwert.MoveNext())
-            {
-                <li>@qwert.Current</li>
-            }
-            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreras_Result result in asdf)
-            {
-                <li>@result.Porcentaje</li>
-            }
-        </ul>
-    </div>
-*@
 
 @section scripts
 {
@@ -121,38 +28,6 @@
     
 
     <script type="text/javascript">
-
-        @*$(function () {
-         //Better to construct options first and then pass it as a parameter
-            var options = {
-                data: [
-                 {
-                     type: "column", //change it to column, spline, line, pie, etc
-                        dataPoints: [
-                          { label: "Hi", y: 10 },
-                          { label: "There", y: 14 },
-                          { label: "You", y: 18 },
-                          { label: "Are", y: 22 },
-                          { label: "Goombaz", y: 18 },
-                          { label: "LOL", y: 28 }
-                        ]
-                 }
-            ]
-        };
-
-        $("#chartContainer").CanvasJSChart(options);
-
-        $("#addDataPoint").click(function () {
-
-                var chart = $("#chartContainer").CanvasJSChart();
-                var length = chart.options.data[0].dataPoints.length;
-                chart.options.data[0].dataPoints.push({ x: (length + 1) * 10, y: Math.round((30 - Math.random() * 10)) });
-                chart.render();
-
-            });
-
-        });
-        *@
 
     var chart;
     window.onload = function () {
@@ -193,7 +68,7 @@
             visible: false,
             indexLabel: "{y}",
             dataPoints: [ ]});
-        @foreach (LaboratorioCINAPFinal.Models.ReporteCarreras_Result result in resCarrera)
+        @foreach (ReporteCarreras_Result result in ViewBag.resCarrera)
         {
             <text>
         chart.options.data[0].dataPoints.push({y: @result.Cantidad, label: "@result.Abreviacion", toolTipContent: "@result.Nombre: @result.Cantidad (@result.Porcentaje%)"})
@@ -207,7 +82,7 @@
             visible: false,
             indexLabel: "{y}",
             dataPoints: [ ]});
-        @foreach (LaboratorioCINAPFinal.Models.ReporteMaterias_Result result in resMateria)
+        @foreach (ReporteMaterias_Result result in ViewBag.resMateria)
             {
             <text>
         chart.options.data[1].dataPoints.push({y: @result.Cantidad, label: "@result.Materia", toolTipContent: "@result.Materia: @result.Cantidad (@result.Porcentaje%)"})
@@ -221,14 +96,14 @@
             visible: false,
             indexLabel: "{y}",
             dataPoints: [ ]});
-        @foreach (LaboratorioCINAPFinal.Models.ReporteSemestres_Result result in resSemestre)
+        @foreach (ReporteSemestres_Result result in ViewBag.resSemestre)
             {
             <text>
         chart.options.data[2].dataPoints.push({y: @result.Cantidad, label: "@result.Semestre° Semestre", toolTipContent: "@result.Semestre° Semestre: @result.Cantidad (@result.Porcentaje%)"})
         </text>
         }
 
-        @foreach (List<LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result> carrera in resCarreraMateria)
+        @foreach (List<ReporteCarreraMaterias_Result> carrera in ViewBag.resCarreraMateria)
             {
             <text>
         chart.options.data.push({legendText: "@carrera[0].Abreviacion",
@@ -244,7 +119,7 @@
             {
                 chart.options.data[chart.options.data.length - 1].dataPoints.push({y: null, label: chart.options.data[chart.options.data.length - 2].dataPoints[i].label, toolTipContent: ""});
             }
-            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result result in carrera)
+            @foreach (ReporteCarreraMaterias_Result result in carrera)
             {
                 <text>
             pos = 0;
@@ -266,7 +141,7 @@
         }
         else
         {
-            @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraMaterias_Result result in carrera)
+            @foreach (ReporteCarreraMaterias_Result result in carrera)
             {
                 <text>
             chart.options.data[chart.options.data.length - 1].dataPoints.push({y: @result.Cantidad, label: "@result.Materia", toolTipContent: "@result.Abreviacion - @result.Materia: @result.Cantidad (@result.Porcentaje%)"})
@@ -276,7 +151,7 @@
         </text>
         }
 
-        @foreach (List<LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result> carrera in resCarreraSemestre)
+        @foreach (List<ReporteCarreraSemestre_Result> carrera in ViewBag.resCarreraSemestre)
         {
             <text>
         chart.options.data.push({legendText: "@carrera[0].Abreviacion",
@@ -292,7 +167,7 @@
         chart.options.data[chart.options.data.length - 1].dataPoints.push({y: null, label: "@(i+1)° Semestre", toolTipContent: ""})
         </text>
         }
-        @foreach (LaboratorioCINAPFinal.Models.ReporteCarreraSemestre_Result result in carrera)
+        @foreach (ReporteCarreraSemestre_Result result in carrera)
             {
                 <text>
         chart.options.data[chart.options.data.length - 1].dataPoints[@result.Semestre].y = @result.Cantidad;
