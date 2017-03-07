@@ -46,7 +46,17 @@ namespace LaboratorioCINAPFinal.Controllers
             }
             ViewBag.resCarreraMateria = resCarreraMateria;
             ViewBag.resCarreraSemestre = resCarreraSemestre;
-            ViewBag.IdTipoReporte = new SelectList(db.TipoReportes, "IdTipoReporte", "Nombre", reporte.IdTipoReporte);
+            //ViewBag.IdTipoReporte = new SelectList(db.TipoReportes, "IdTipoReporte", "Nombre", reporte.IdTipoReporte);
+            ViewBag.IdTipoReporte =
+                new SelectList(
+                    new List<string>
+                    {
+                        "Reporte de Semestres por Carrera",
+                        "Reporte de Materias",
+                        "Reporte de Carreras",
+                        "Reporte de Semestres",
+                        "Reporte de Materias por Carrera"
+                    }, "-- Selecciona un tipo de reporte --");
             return View(reporte);
         }
 

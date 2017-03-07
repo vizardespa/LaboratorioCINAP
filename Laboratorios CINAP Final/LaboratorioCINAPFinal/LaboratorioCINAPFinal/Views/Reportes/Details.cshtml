@@ -2,7 +2,7 @@
 @model Reporte
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles Reporte: " + Model.Nombre;
 }
 
 <h2>@Html.DisplayFor(model => model.Nombre)</h2>
@@ -182,14 +182,13 @@
     }
 
     function changeReporte(value) {
-
-
-        if(value.options[value.selectedIndex].text == "ReporteCarreraSemestre")
+        var i;
+        if(value.options[value.selectedIndex].text === "Reporte de Semestres por Carrera")
         {
             chart.options.title.text = "Préstamos en cada Semestre por Carrera";
             for(i = 0; i < chart.options.data.length; i++)
             {
-                if(chart.options.data[i].name == "CarreraSemestre")
+                if(chart.options.data[i].name === "CarreraSemestre")
                 {
                     chart.options.data[i].visible = true;
                     chart.options.data[i].showInLegend = true;
@@ -201,12 +200,12 @@
                 }
             }
         }
-        else if(value.options[value.selectedIndex].text == "ReporteMaterias")
+        else if(value.options[value.selectedIndex].text === "Reporte de Materias")
         {
             chart.options.title.text = "Préstamos en cada Materia";
             for(i = 0; i < chart.options.data.length; i++)
             {
-                if(chart.options.data[i].name == "Materia")
+                if(chart.options.data[i].name === "Materia")
                 {
                     chart.options.data[i].visible = true;
                 }
@@ -217,12 +216,12 @@
                 }
             }
         }
-        else if(value.options[value.selectedIndex].text == "ReporteCarreras")
+        else if(value.options[value.selectedIndex].text === "Reporte de Carreras")
         {
             chart.options.title.text = "Préstamos en cada Carrera";
             for(i = 0; i < chart.options.data.length; i++)
             {
-                if(chart.options.data[i].name == "Carrera")
+                if(chart.options.data[i].name === "Carrera")
                 {
                     chart.options.data[i].visible = true;
                 }
@@ -233,12 +232,12 @@
                 }
             }
         }
-        else if(value.options[value.selectedIndex].text == "ReporteSemestres")
+        else if(value.options[value.selectedIndex].text === "Reporte de Semestres")
         {
             chart.options.title.text = "Préstamos en cada Semestre";
             for(i = 0; i < chart.options.data.length; i++)
             {
-                if(chart.options.data[i].name == "Semestre")
+                if(chart.options.data[i].name === "Semestre")
                 {
                     chart.options.data[i].visible = true;
                 }
@@ -249,12 +248,12 @@
                 }
             }
         }
-        else if(value.options[value.selectedIndex].text == "ReporteCarreraMaterias")
+        else if(value.options[value.selectedIndex].text === "Reporte de Materias por Carrera")
         {
             chart.options.title.text = "Préstamos en cada Materia por Carrera";
             for(i = 0; i < chart.options.data.length; i++)
             {
-                if(chart.options.data[i].name == "CarreraMateria")
+                if(chart.options.data[i].name === "CarreraMateria")
                 {
                     chart.options.data[i].visible = true;
                     chart.options.data[i].showInLegend = true;
@@ -264,6 +263,15 @@
                     chart.options.data[i].visible = false;
                     chart.options.data[i].showInLegend = false;
                 }
+            }
+        }
+        else
+        {
+            chart.options.title.text = "";
+            for(i = 0; i < chart.options.data.length; i++)
+            {
+                chart.options.data[i].visible = false;
+                chart.options.data[i].showInLegend = false;
             }
         }
 
@@ -280,6 +288,6 @@
     
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Reporte }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_Reporte }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

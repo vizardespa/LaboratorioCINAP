@@ -1,18 +1,17 @@
 ﻿@model LaboratorioCINAPFinal.Models.Reporte
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Reporte: " + Model.Nombre;
 }
 
-<h2>Delete</h2>
+<h2>Eliminar Reporte</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Deseas eliminar este reporte?</h3>
 <div>
-    <h4>Reporte</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </dt>
 
         <dd>
@@ -20,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaInicioPeriodo)
+            Inicio de Periodo
         </dt>
 
         <dd>
@@ -28,27 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaTerminacionPeriodo)
+            Fin de Periodo
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.FechaTerminacionPeriodo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Temporal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Temporal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoReporte.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoReporte.Nombre)
         </dd>
 
     </dl>
@@ -57,8 +40,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn-danger" /> |
+            @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
 </div>

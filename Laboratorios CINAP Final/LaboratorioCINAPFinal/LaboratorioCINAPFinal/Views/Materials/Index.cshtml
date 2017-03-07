@@ -1,33 +1,30 @@
 ﻿@model IEnumerable<LaboratorioCINAPFinal.Models.Material>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Materiales";
 }
 
-<h2>Index</h2>
+<h2>Materiales</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Insertar nuevo material", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CodigoSerie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Disponibilidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoFuncional)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoDescripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activo)
+            Codigo de Serie
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TipoMaterial.Nombre)
+        </th>
+        <th>
+            Disponibilidad
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Descripcion
         </th>
         <th></th>
     </tr>
@@ -38,24 +35,35 @@
             @Html.DisplayFor(modelItem => item.CodigoSerie)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Disponibilidad)
+            @Html.DisplayFor(modelItem => item.TipoMaterial.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EstadoFuncional)
+            @if (item.Disponibilidad != null && item.Disponibilidad.Value)
+            {
+                @:Disponible
+            }
+            else
+            {
+                @:No Disponible
+            }
+        </td>
+        <td>
+            @if (item.EstadoFuncional != null && item.EstadoFuncional.Value)
+            {
+                @:Funcional
+            }
+            else
+            {
+                @:No Funcional
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EstadoDescripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoMaterial.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Material }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Material }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Material })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_Material }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_Material }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_Material })
         </td>
     </tr>
 }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LaboratorioCINAPFinal.Models.RegistroPrestamoMaterial>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Prestamo de Materiales";
 }
 
-<h2>Index</h2>
+<h2>Prestamo de Materiales</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo prestamo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.Grupo.Materia)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.ID_RegistroPrestamoMaterial}) |
-            @Html.ActionLink("Details", "Details", new {id = item.ID_RegistroPrestamoMaterial}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.ID_RegistroPrestamoMaterial})
+            @Html.ActionLink("Editar", "Edit", new {id = item.ID_RegistroPrestamoMaterial}) |
+            @Html.ActionLink("Detalles", "Details", new {id = item.ID_RegistroPrestamoMaterial}) |
+            @Html.ActionLink("Eliminar", "Delete", new {id = item.ID_RegistroPrestamoMaterial})
         </td>
     </tr>
 }

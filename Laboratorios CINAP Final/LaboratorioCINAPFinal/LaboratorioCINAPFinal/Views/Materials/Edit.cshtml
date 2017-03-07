@@ -1,10 +1,10 @@
 ﻿@model LaboratorioCINAPFinal.Models.Material
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Material: " + Model.TipoMaterial.Nombre;
 }
 
-<h2>Edit</h2>
+<h2>Editar: Codigo @Html.DisplayFor(model => model.CodigoSerie) - @Html.DisplayFor(model => model.TipoMaterial.Nombre)</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Material</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID_Material)
@@ -62,18 +61,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Activo)
-                    @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>

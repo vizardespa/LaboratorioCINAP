@@ -4,21 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Reportes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo reporte", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaInicioPeriodo)
+            Inicio de Periodo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaTerminacionPeriodo)
+            Fin de Periodo
         </th>
         @*
     <th>
@@ -51,9 +51,9 @@
     </td>
         *@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Reporte }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Reporte }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Reporte })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_Reporte }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_Reporte }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_Reporte })
         </td>
     </tr>
 }
